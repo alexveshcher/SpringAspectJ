@@ -12,6 +12,6 @@ public class LoggingAspect {
         System.out.println("logBefore");
     }
 
-    
+
 
 }

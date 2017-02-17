@@ -13,4 +13,20 @@
      <!--Aspect -->
     <bean id="logAspect" class="alex.aspect.LoggingAspect" />
 
+    <!-- Aspect -->
+    <bean id="logoutAspect" class="alex.aspect.LogoutAspect" />
+
+    <aop:config>
+
+        <aop:aspect id="aspectLoggging" ref="logoutAspect" >
+
+            <!-- @After -->
+            <aop:pointcut id="pointCutAfter"
+                          expression="execution(* alex.deanery.IDeanery.addStudent(..))" />
+
+            <aop:after method="logoutAfter" pointcut-ref="pointCutAfter" />
+
+        </aop:aspect>
+
+    </aop:config>
 </beans>

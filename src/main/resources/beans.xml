@@ -6,11 +6,28 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
 
+    <!-- For Aspects with annotation -->
     <aop:aspectj-autoproxy />
 
     <bean id="deanery" class="alex.deanery.Deanery" />
 
-     <!--Aspect -->
+     <!--Aspect Annotation -->
     <bean id="logAspect" class="alex.aspect.LoggingAspect" />
 
+    <!-- Aspect XML -->
+    <bean id="logoutAspect" class="alex.aspect.LogoutAspect" />
+
+    <aop:config>
+
+        <aop:aspect id="aspectLoggging" ref="logoutAspect" >
+
+            <!-- @After -->
+            <aop:pointcut id="pointCutAfter"
+                          expression="execution(* alex.deanery.IDeanery.addStudent(..))" />
+
+            <aop:after method="logoutAfter" pointcut-ref="pointCutAfter" />
+
+        </aop:aspect>
+
+    </aop:config>
 </beans>
